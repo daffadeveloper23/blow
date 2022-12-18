@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'favicon.png' %}" rel="icon" type="image/png">
+    <title>Content</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/wiki.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+    <script src="https://kit.fontawesome.com/7f0d38f651.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="background-color: #490B3D;">
+    <div class="kontainer">
+        <a href="{% url 'wiki' id=current_profile.id_user %}" style="text-decoration: none;"><h3 class="logo" style="color: white;">Social Pedia</h3></a>
+        <div class="new_book">
+            <a href="{% url 'make_book' %}" style="color: white; text-decoration: none;">Make New Book</a>
+            <a href="/" style="color: white; text-decoration: none;">Main Page</a>
+        </div>
+    </div>
+    <div class="halaman">
+        <div class="baca">
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{ current_book.book_title }}">
+                {{ form.as_p }}
+                {{ form.media }}
+                
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </form>
+            
+
+        </div>
+    </div>
+    
+ <!-- Scripts
+    ================================================== -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>  
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'favicon.png' %}" rel="icon" type="image/png">
+    <title>Make Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/wiki.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
+
+<body style="background-color: #490B3D;">
+    <div class="boks">
+        <div class="konten">
+            <img src="{{ current_profile.profileimg.url }}" alt="">
+            <form action="#">
+                <label for="#" class="buat">Cari Buku</label>
+                <br>
+                <input type="text">
+            </form>
+        </div>
+    </div>
+    <div class="kontainer">
+        <a href="{% url 'wiki' id=current_profile.id_user %}"><h3 class="logo" style="color: white;">Social Pedia</h3></a>
+        <div class="new_book">
+            <a href="{% url 'wiki' id=current_profile.id_user %}" style="color: white; text-decoration: none;">Book List</a>
+            <a href="/" style="color: white; text-decoration: none;">Main Page</a>
+        </div>
+    </div>
+    <div class="formulir">
+        <form action="{% url 'make_book' %}" method="POST">
+            {% csrf_token %}
+            <div class="masukan form-group">
+                <label for="title">Book Title</label>
+                <br>
+                <input type="text" id="title" name="title" class="form-control">
+            </div>
+            <br>
+            <div class="masukan form-group">
+                <label for="description">Book Description</label>
+                <br>
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <br>
+            <div class="masukan form-group">
+                <label for="category">Book Category</label>
+                <select class="form-select" id="category" name="category">
+                    {% for cat in categories %}
+                        <option>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <button type="submit">Make New Book</button>
+        </form>
+    </div>
+    
+    
+ <!-- Scripts
+    ================================================== -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>  
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+</body>
+
+
+</html>

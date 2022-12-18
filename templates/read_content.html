@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'favicon.png' %}" rel="icon" type="image/png">
+    <title>Content</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'assets/css/wiki.css' %}">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
+    <script src="https://kit.fontawesome.com/7f0d38f651.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="background-color: #490B3D;">
+    <div class="kontainer">
+        <a href="{% url 'wiki' id=current_profile.id_user %}" style="text-decoration: none;"><h3 class="logo" style="color: white;">Social Pedia</h3></a>
+        <div class="new_book">
+            <a href="{% url 'make_book' %}" style="color: white; text-decoration: none;">Make New Book</a>
+            <a href="/" style="color: white; text-decoration: none;">Main Page</a>
+        </div>
+    </div>
+    <div class="halaman">
+        <div class="baca">
+            <h1>{{ content.title }}</h2>
+            <h3>ditulis oleh {{ content.author }}</h4>
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+            <p style="margin-top: 30px;">{{ content.text|safe }}</p>
+            <div class="bicara">
+                <div class="bungkus">
+                    <header>Bacakan Teks</header>
+                    <form action="#">
+                        <input type="hidden" value="{{ content.text|safe }}" id="bacaan">
+                        <div class="baris">
+                            <label style="color: black;">Pilih Suara</label>
+                            <div class="luaran">
+                                <select>
+                                </select>
+                            </div>
+                        </div>
+                        <button style="height: 52px; margin-top: 10px; background: #490B3D; font-size: 17px; cursor: pointer;" id="tombol">Mulai Baca</button>
+                    </form>
+                </div>
+            </div>
+            {% if content.video %}
+            <div class="video_player">
+                <video id="player" playsinline controls data-poster="/path/to/poster.jpg" style="width: 800px; margin-top: 100px;">
+                    <source src="{{ content.video.url }}" type="video/mp4" />
+                    <!-- Captions are optional -->
+                    <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default />
+                </video>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+ <!-- Scripts
+    ================================================== -->
+    <script src="{% static 'assets/js/tippy.all.min.js' %}"></script>  
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/uikit.js' %}"></script>
+    <script src="{% static 'assets/js/simplebar.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/speech.js' %}"></script>
+
+    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>
+    <script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
+</body>
+
+
+</html>
